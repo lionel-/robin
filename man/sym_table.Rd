@@ -6,6 +6,10 @@
 \usage{
 sym_table()
 }
+\value{
+A list of 4019 elements. Each element is a pairlist of
+  symbols.
+}
 \description{
 This returns the hash buckets of R's symbol table.
 }
