@@ -1,0 +1,12 @@
+Package: robin
+Title: Give access to R's private riches
+Version: 0.0.0.9000
+Authors@R: 'Lionel Henry <lionel.hry@gmail.com> [aut, cre]'
+Description: This Github-only package provides access to R's private
+    data structures. This is useful for exploring how R works, for
+    benchmarking, etc.
+Depends: R (>= 3.4.0)
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
