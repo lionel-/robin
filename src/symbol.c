@@ -5,14 +5,11 @@
 extern SEXP* R_SymbolTable;
 
 SEXP robin_symbol_table() {
-  static SEXP table = NULL;
-  if (!table) {
-    table = Rf_allocVector(VECSXP, HSIZE);
-    R_PreserveObject(table);
+  SEXP table = PROTECT(Rf_allocVector(VECSXP, HSIZE));
 
-    for (int i = 0; i != HSIZE; ++i)
-      SET_VECTOR_ELT(table, i, R_SymbolTable[i]);
-  }
+  for (int i = 0; i != HSIZE; ++i)
+    SET_VECTOR_ELT(table, i, R_SymbolTable[i]);
 
+  UNPROTECT(1);
   return table;
 }
