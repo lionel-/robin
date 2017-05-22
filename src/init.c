@@ -2,10 +2,10 @@
 #include <R_ext/Rdynload.h>
 #include <stdbool.h>
 
-extern SEXP robin_symbol_table();
+extern SEXP sym_table();
 
 static const R_CallMethodDef call_entries[] = {
-  {"robin_symbol_table", (DL_FUNC) &robin_symbol_table, 0},
+  {"robin_sym_table", (DL_FUNC) &sym_table, 0},
   {NULL, NULL, 0}
 };
 

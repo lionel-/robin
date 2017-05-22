@@ -6,5 +6,5 @@
 #'   symbols.
 #' @export
 sym_table <- function() {
-  .Call(robin_symbol_table)
+  .Call(robin_sym_table)
 }

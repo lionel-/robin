@@ -4,7 +4,7 @@
 #define HSIZE 4119
 extern SEXP* R_SymbolTable;
 
-SEXP robin_symbol_table() {
+SEXP sym_table() {
   SEXP table = PROTECT(Rf_allocVector(VECSXP, HSIZE));
 
   for (int i = 0; i != HSIZE; ++i)
