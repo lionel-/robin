@@ -36,3 +36,19 @@ SEXP robin_prim_ptr(SEXP prim) {
   CCODE c_ptr = prim_ptr(prim);
   return function_ptr((DL_FUNC) c_ptr);
 }
+
+// The primitive objects are stored in the tag field of symbols
+
+SEXP robin_intl(SEXP sym) {
+  if (TYPEOF(sym) != SYMSXP) {
+    Rf_errorcall(R_NilValue, "`intl` must be a symbol");
+  }
+
+  SEXP intl = INTERNAL(sym);
+  check_primitive(intl);
+  return intl;
+}
+SEXP intl(const char* nm) {
+  SEXP sym = Rf_install(nm);
+  return robin_intl(sym);
+}
