@@ -67,4 +67,27 @@ prim_ptr <- function(prim) {
   .Call(robin_prim_ptr, robin::prim(prim))
 }
 
+#' Invoke a primitive function
+#'
+#' @inheritParams prim_offset
+#' @param ptr A pointer object to a primitive function.
+#' @param call The quoted call that the primitive will think it was
+#'   invoked with.
+#' @param args A pairlist of arguments.
+#' @param rho The environment that the primitive will think it was
+#'   invoked in.
+#' @export
+#' @examples
+#' prim_invoke(list, NULL, pairlist(1, "a"))
+prim_invoke <- function(prim, call, args = NULL, rho = caller_env()) {
+  stopifnot(is_pairlist(args))
+  stopifnot(is_env(rho))
+  .Call(robin_prim_invoke, robin::prim(prim), call, args, rho)
+}
+#' @rdname prim_invoke
+#' @export
+prim_ptr_invoke <- function(ptr, call, args = NULL, rho = caller_env()) {
+  stopifnot(is_pairlist(args))
+  stopifnot(is_env(rho))
+  .Call(robin_prim_ptr_invoke, ptr, call, args, rho)
 }

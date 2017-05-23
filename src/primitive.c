@@ -34,7 +34,7 @@ CCODE prim_ptr(SEXP prim) {
 }
 SEXP robin_prim_ptr(SEXP prim) {
   CCODE c_ptr = prim_ptr(prim);
-  return function_ptr((DL_FUNC) c_ptr);
+  return prim_function_ptr(prim, (DL_FUNC) c_ptr);
 }
 
 // The primitive objects are stored in the tag field of symbols
@@ -51,4 +51,24 @@ SEXP robin_intl(SEXP sym) {
 SEXP intl(const char* nm) {
   SEXP sym = Rf_install(nm);
   return robin_intl(sym);
+}
+
+
+static CCODE prim_holder = NULL;
+
+SEXP prim_invoke(SEXP prim, SEXP call, SEXP args, SEXP rho) {
+  check_primitive(prim);
+  prim_holder = prim_ptr(prim);
+
+  // The `op` parameter is the primitive object itself
+  return prim_holder(call, prim, args, rho);
+}
+SEXP prim_ptr_invoke(SEXP ptr, SEXP call, SEXP args, SEXP rho) {
+  if (!Rf_inherits(ptr, "prim_pointer"))
+    Rf_errorcall(R_NilValue, "`ptr` must be a primitive function pointer");
+
+  prim_holder = (CCODE) R_ExternalPtrAddrFn(VECTOR_ELT(ptr, 0));
+
+  SEXP prim = VECTOR_ELT(ptr, 1);
+  return prim_holder(call, prim, args, rho);
 }

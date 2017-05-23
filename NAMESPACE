@@ -2,8 +2,10 @@
 
 export(intl)
 export(prim)
+export(prim_invoke)
 export(prim_offset)
 export(prim_ptr)
+export(prim_ptr_invoke)
 export(sym_table)
 import(rlang)
 useDynLib(robin, .registration = TRUE)

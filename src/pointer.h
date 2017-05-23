@@ -23,6 +23,7 @@ DL_FUNC R_ExternalPtrAddrFn(SEXP s) {
 #endif
 
 SEXP function_ptr(DL_FUNC fn);
+SEXP prim_function_ptr(SEXP prim, DL_FUNC fn);
 
 
 #endif
