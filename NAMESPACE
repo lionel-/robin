@@ -2,4 +2,5 @@
 
 export(prim_offset)
 export(sym_table)
+import(rlang)
 useDynLib(robin, .registration = TRUE)

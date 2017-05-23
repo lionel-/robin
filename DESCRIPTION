@@ -6,6 +6,7 @@ Description: This Github-only package provides access to R's private
     data structures. This is useful for exploring how R works, for
     benchmarking, etc.
 Depends: R (>= 3.4.0)
+Imports: rlang
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
