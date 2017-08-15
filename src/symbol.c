@@ -13,3 +13,12 @@ SEXP sym_table() {
   UNPROTECT(1);
   return table;
 }
+
+
+SEXP sym_unbound() {
+  return R_UnboundValue;
+}
+
+SEXP robin_is_missing(SEXP x) {
+  return Rf_ScalarLogical(x == R_MissingArg);
+}
