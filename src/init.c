@@ -6,6 +6,7 @@
 extern SEXP robin_lang_prom(SEXP);
 extern SEXP prim_invoke(SEXP, SEXP, SEXP, SEXP);
 extern SEXP prim_ptr_invoke(SEXP, SEXP, SEXP, SEXP);
+extern SEXP r_env_mirror(SEXP, SEXP);
 extern SEXP robin_intl(SEXP);
 extern SEXP robin_is_missing(SEXP);
 extern SEXP robin_prim_offset(SEXP);
@@ -17,6 +18,7 @@ extern SEXP sym_table();
 extern SEXP sym_unbound();
 
 static const R_CallMethodDef call_entries[] = {
+  {"r_env_mirror",          (DL_FUNC) &r_env_mirror, 2},
   {"robin_lang_prom",       (DL_FUNC) &robin_lang_prom, 1},
   {"robin_intl",            (DL_FUNC) &robin_intl, 1},
   {"robin_is_missing",      (DL_FUNC) &robin_is_missing, 1},
